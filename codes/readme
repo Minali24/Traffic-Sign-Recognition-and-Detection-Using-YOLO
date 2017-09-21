@@ -1,0 +1,37 @@
+running instructions
+--------------------
+1. custom cnn
+dependencies: keras, tensorflow, numpy and pillow libraries
+The main.py script accepts data set dir as input and trains the network and prints the classification accuracy in the end.
+Since the results were bad we did not save the model file.
+It expects data set images by grouping them into their respective classes.
+e.g.
+dataset
+|_class1
+|  |_1.img
+|  .
+|  .
+|_class2
+   |_1.img
+   .
+   .
+
+2. you only look once
+We used darnet implementation of this framework. from https://pjreddie.com/darknet/
+This expects data set in certain format and requires some config files which come with the framework. We used yolo-voc data set configs in our experiments
+
+3. inception architecture in tensorflow
+dependencies: docker framework with tensorflow CPU image
+The main.py script accepts the path of the image to be classified and it uses graph and label
+files generated during training to classify. To train in tensorflow, we just use a simple python command as follows:
+
+python tensorflow/examples/image_retraining/retrain.py \
+--bottleneck_dir=/tf_files/bottlenecks \
+--how_many_training_steps 500 \
+--model_dir=/tf_files/inception \
+--output_graph=/tf_files/retrained_graph.pb \
+--output_labels=/tf_files/retrained_labels.txt \
+--image_dir /tf_files/training_images
+
+
+The model file is huge and hence not able to submit this with the submission dir.
